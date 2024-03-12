@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Willkommen im Dashboard</h2>
+<div class="container">
+	<img class="imgavatar " src="{{ user.userAvatarPath }}" alt="Avatar von {{ user.userName }}" title="Avatar von {{ user.userName }}">
+	<h3>Username: '{{ account.accountName }}'</h3>
+	<p>BenutzerRolle: '{{ account.accountRole.accRoleName }}'</p> 
+	<p>Mitglied seit: {{ date.date }}</p>
+	<p>User ID: {{ user.userId }}</p>
+	<p>Email: {{ user.userEmail }}</p>
+	<p>Status: {{ user.userState.userStatesLabel }}<i></i></p>
+</div>
+<div class="container">
+	<form action="{{BASE_URL}}/admin/user/changeprofil.php" method="POST" enctype="multipart/form-data">				
+		<input type="hidden" name="formEditUserData">				
+		<fieldset>
+			<legend>Userdaten ändern oder hinzufügen</legend>
+			<br>					
+			<label>Email-Adresse ändern:</label>
+			<span class="text-danger">{{sessionData.form_data.error.email}}</span><br>
+			<input type="text" name="userEmail" value="{{ user.userEmail }}" placeholder="Dies ist ein Pflichtfeld"><br>
+			
+			<fieldset style="width: 80%">
+				<legend>Avatarbild hochladen</legend>
+
+				<p class="small">
+					Erlaubt sind Bilder vom Typ jpg, png, gif 
+					<br>
+					Die Bildhöhe darf 800 pixel nicht überschreiten.<br>
+					Die Bildbreite darf 800 pixel nicht überschreiten.<br>
+					Die Bildgröße darf 128 kB nicht überschreiten.<br>
+				</p>
+
+				<span class="text-danger">{{sessionData.form_data.error.image}}</span><br>
+				<div class="input-group mb-3">
+					<label class="input-group-text" for="avatar">Upload</label>
+					<input type="file" class="form-control" name="avatar" id="avatar">
+				</div>
+
+			</fieldset>
+			
+			<br>
+			<br>
+			
+			<label>Passwort ändern:</label>
+			<p class="small">
+				Um Ihr Passwort zu ändern, geben Sie bitte im ersten Eingabefeld ein neues Passort ein und 
+				wiederholen Sie das neue Passwort im zweiten Eingabefeld.<br>
+				<i><strong>Das neue Passwort muss mindestens 3 Zeichen lang sein.</strong></i><br>
+				<br>
+				Im letzten Eingabefeld müssen Sie die Passwortänderung zur Sicherheit durch die Eingabe 
+				Ihres bisherigen Passworts bestätigen.
+			</p>
+			<span class="text-danger">{{sessionData.form_data.error.password}}</span><br>
+			<input type="password" name="passwordNew" placeholder="Neues Passwort..."><br>
+			<input type="password" name="passwordCheck" placeholder="Neues Passwort wiederholen..."><br>
+			<hr>
+			<input type="password" name="passwordOrigin" placeholder="Mit bisherigem Passwort bestätigen...">					
+			<br>					
+			<input class="btn btn-primary" type="submit" value="Änderungen speichern">			
+		</fieldset>				
+	</form>					
+</div>
+{% endblock %}

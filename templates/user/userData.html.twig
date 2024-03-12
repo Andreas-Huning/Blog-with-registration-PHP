@@ -1,0 +1,37 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}Benutzerdaten anpassen{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Benutzerdaten anpassen</h2>
+<div class="container">
+	<img class="imgavatar " src="{{ user.userAvatarPath }}" alt="Avatar von {{ user.userName }}" title="Avatar von {{ user.userName }}">
+	<h3>Username: '{{ account.accountName }}'</h3>
+	<p>BenutzerRolle: '{{ account.accountRole.accRoleName }}'</p> 
+	<p>Mitglied seit: {{ date.date }}</p>
+	<p>User ID: {{ user.userId }}</p>
+	<p>Email: {{ user.userEmail }}</p>
+	<p>Status: {{ user.userState.userStatesLabel }}<i></i></p>
+</div>
+<div class="container">
+	<form class="row g-3" action="{{BASE_URL}}/admin/user/updateprofil.php" method="POST">
+		<input type="hidden" name="formAddUserData">	
+        <div class="col-md-3">
+            <label for="userFirstNameForm" class="form-label">Vorname</label><span class="text-danger"></span>
+            <input type="text" class="form-control" id="userFirstNameForm" name="userFirstNameForm" placeholder="Vorname" value="{{userData.userDataFirstName}}">
+        </div>
+        <div class="col-md-3">
+            <label for="userLastNameForm" class="form-label">Nachname</label><span class="text-danger"></span>
+            <input type="text" class="form-control" id="userLastNameForm" name="userLastNameForm" placeholder="Nachname"value="{{userData.userDataLastName}}">
+        </div>
+
+        <div class="col-3">
+            <label for="userBirthdayForm" class="form-label">Geburtsdatum</label><span class="text-danger"></span><br>
+				<input type="date" name="userBirthdayForm" id="userBirthdayForm" value="{{userData.userDataBirthday}}">
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>		
+	</form>					
+</div>
+{% endblock %}

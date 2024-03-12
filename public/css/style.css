@@ -1,0 +1,38 @@
+.imgavatar {
+	width: 150px;
+	height: 150px;
+	margin: 15px 15px 15px 0;
+	border: 1px solid lightgray;
+	padding: 5px;
+}
+fieldset, input, textarea, select {
+	border-radius: 5px;
+}
+fieldset {
+	margin-bottom: 10px;
+}
+fieldset fieldset {
+	width: 78%;
+	border: 1px solid gray;
+    padding: 20px;
+}
+
+input, textarea {
+	margin: 5px 0;
+	padding: 5px;
+
+}
+textarea {
+	height: 100px;
+	font-family: verdana;
+}
+input.short {
+	width: 125px;
+}
+input::placeholder {
+   opacity: 0.9;
+	font-size: 0.9em;
+}
+p.small { 
+	font-size: 0.7em; color: gray;
+}

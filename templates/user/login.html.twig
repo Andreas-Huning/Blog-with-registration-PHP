@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Willkommen auf der Loginseite</h2>
+            <form action="{{BASE_URL}}/admin/user/login.php" method="POST">
+				<input type="hidden" name="formLogin">
+				<fieldset>
+					<legend>Login</legend>						
+                    <span class="text-danger">{{sessionData.form_data.error.login}}</span><br>				
+					<span class="text-danger">{{sessionData.form_data.error.email}}</span><br>
+					<input class="short" type="email" name="f1" placeholder="Email-Adresse..." value="{{ sessionData.form_data.form_data.f1 }}" required><br>
+                    <span class="text-danger">{{sessionData.form_data.error.password}}</span><br>
+					<input class="short" type="password" name="f2" placeholder="Passwort..." required><br>
+					<input class="btn btn-primary mt-3" type="submit" value="Anmelden">
+				</fieldset>
+			</form>
+{% endblock %}

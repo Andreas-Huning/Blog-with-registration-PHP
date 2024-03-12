@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href=" {{BASE_URL}} /public/css/bootstrap.min.css">
+        <link rel="stylesheet" href=" {{BASE_URL}} /public/css/debug.css">
+        <link rel="stylesheet" href=" {{BASE_URL}} /public/css/style.css">
+
+        <title>{% block title %}Kochbuch{% endblock %}</title>
+    </head>
+    <body class="container">
+        <nav>
+            {% include 'navigation.html.twig' %}	
+        </nav>
+    
+        <header>
+        {% block header %}
+        {% endblock %}
+        </header>
+
+
+
+        <main>
+            {% block content %}
+            {# Standardinhalt, falls kein überschreibender Inhalt vorhanden ist #}
+            {% endblock %}
+        </main>
+
+        <footer>
+            {% include 'footer.html.twig' %}	
+        </footer>
+        <script src="{{BASE_URL}} /public/javascript/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

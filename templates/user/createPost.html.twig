@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beitrag{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Beitragsseite</h2>
+<div class="container">
+	<img class="imgavatar " src="{{ user.userAvatarPath }}" alt="Avatar von {{ user.userName }}" title="Avatar von {{ user.userName }}">
+	<h3>Username: '{{ account.accountName }}'</h3>
+	<p>BenutzerRolle: '{{ account.accountRole.accRoleName }}'</p> 
+	<p>Mitglied seit: {{ date.date }}</p>
+	<p>User ID: {{ user.userId }}</p>
+	<p>Email: {{ user.userEmail }}</p>
+	<p>Status: {{ user.userState.userStatesLabel }}<i></i></p>
+</div>
+<hr>
+<div class="container border border-primary p-3">
+    <form class="row g-3" action="{{BASE_URL}}/admin/user/createPost.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="createPost">	
+
+        <div class="col-md-3">
+            <label for="postTitelForm" class="form-label">Titel</label><br><span class="text-danger">{{sessionData.form_data.error.Titel}}</span>
+            <input type="text" class="form-control" id="postTitelForm" name="postTitelForm" placeholder="Titel" value="{{sessionData.form_data.form_data.postTitelForm}}" required>
+        </div>
+
+        <span class="text-danger"></span><br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="postImageForm">Upload</label><span class="text-danger">{{sessionData.form_data.error.image}}</span>
+            <input type="file" class="form-control" name="postImageForm" id="postImageForm" required>
+        </div>
+        <div class="form-floating">
+            <span class="text-danger">{{sessionData.form_data.error.Text}}</span>
+            <textarea class="form-control" placeholder="Beitragstext...." id="postTextForm" style="height: 100px" name="postTextForm" required>{{sessionData.form_data.form_data.postTextForm}}</textarea>
+            <label for="postTextForm">Beitrag</label>
+        </div>
+
+
+
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Hinzufügen</button>
+        </div>		
+    </form>					
+</div>
+
+{% endblock %}

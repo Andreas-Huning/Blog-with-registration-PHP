@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil von {{user.accountName}} {% endblock %}
+
+{% block content %}
+<h2>Profil von {{user.accountName}}</h2>
+<div class="container d-flex flex-wrap">
+    <div><img class="imgavatar " src="{{ user.userAvatarPath }}" alt="Avatar von {{ user.accountName }}" title="Avatar von {{ user.accountName }}"></div>
+    <div>
+        <p>Rolle: {{ user.accRoleName }}</p>
+        <p>Vorname: {{ user.userDataFirstName }}</p>
+        <p>Nachname: {{ user.userDataLastName }}</p>
+        <p>Geburtsdatum: {{ user.birthday }}</p>
+        <p>Mitglied seit: {{ user.userRegTime }}</p>
+        <p>Email: {{ user.userEmail }}</p>
+    </div>
+</div>
+<h3>Alle Beitrage von {{user.accountName}}</h3>
+<div class="d-flex flex-wrap">
+    {% for post in user.posts %}
+        <div class="card m-3" style="width: 20rem;">
+            <img src="{{ post.postImagePath }}" class="card-img-top" alt="{{ post.postTitel }}">
+            <div class="card-body">
+                <p class="card-text">Erstellt von: <strong>{{ user.accountName }}</strong> ({{ user.accRoleName }}) am {{ post.postDate|date('d.m.Y - H:m') }} Uhr</p> 
+                <h5 class="card-title">{{ post.postTitel }}</h5>                 
+                <p class="card-text">{{ post.postText }}</p>            
+              </div>
+        </div>
+    {% endfor %} 
+</div>
+{% endblock %}

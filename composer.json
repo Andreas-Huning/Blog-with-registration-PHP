@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Lib\\": "lib/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.8",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Regsitrieren{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Registrierungsseite</h2>
+            <form action="{{BASE_URL}}/admin/user/registration.php" method="POST">
+				<input type="hidden" name="formRegistration">
+				<fieldset>
+					<legend>Registrieren</legend>	
+                    <div class="mb-3">
+                        <span class="text-danger">{{sessionData.form_data.error.userName}}</span><br>
+                        <label for="accountNameForm" class="form-label">Nutzername</label>
+                        <input type="text" class="form-control" id="accountNameForm" name="accountNameForm" placeholder="Nutzername..." required>
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-danger">{{sessionData.form_data.error.email}}</span><br>
+                        <label for="userEmailForm" class="form-label">E-Mail</label>
+                        <input type="email" class="form-control" id="userEmailForm" name="userEmailForm" placeholder="Email-Adresse..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Passwort</label>
+                        <span class="text-danger">{{sessionData.form_data.error.password}}</span><br>
+                        <p class="small">
+                            Geben Sie das gewünschte Passwort bitte im ersten Eingabefeld ein und 
+                            wiederholen Sie das Passwort im zweiten Eingabefeld.<br>
+                            <i><strong>Das Passwort muss mindestens 4 Zeichen lang sein.</strong></i>
+                        </p>
+                        {# <label for="passwordForm" class="form-label">Passwort</label> #}
+                        <input type="password" class="form-control" id="passwordForm" name="passwordForm" placeholder="Passwort..." required>
+                        <input type="password" class="form-control" id="passwordCheckForm" name="passwordCheckForm" placeholder="Passwort wiederholen..." required>
+                    </div>
+					<input class="btn btn-primary mt-3" type="submit" value="Registrieren">
+				</fieldset>
+			</form>
+{% endblock %}
